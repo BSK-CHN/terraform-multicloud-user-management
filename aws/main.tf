@@ -4,8 +4,14 @@ provider "aws" {
 
 resource "aws_iam_user" "anbu_user" {
   name = "anbu"
-  path = "/"
 }
+
+resource "aws_iam_user_login_profile" "anbu_login" {
+  user    = aws_iam_user.anbu_user.name
+  password = "Anbu@12345"  # Change to a strong password!
+  password_reset_required = true
+}
+
 resource "aws_iam_group" "admin_group" {
   name = "AdminGroup"
 }
